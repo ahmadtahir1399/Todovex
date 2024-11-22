@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export const Header = () => {
   return (
-    <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center relative overflow-hidden">
+    <header className="py-24 text-center relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -49,7 +49,7 @@ export const Header = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 flex justify-center gap-6"
         >
-          <Button className="bg-[#7289da] hover:bg-[#424549] text-white px-8 py-6 text-lg font-medium rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#7289da]/20">
+          <Button className="bg-[#7289da] hover:bg-[#7159da] text-white px-8 py-6 text-lg font-medium rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#7289da]/20">
             Get Started
           </Button>
           <Button variant="outline" className="px-8 py-6 text-lg font-medium rounded-xl border-2 transition-all duration-300 hover:scale-105">

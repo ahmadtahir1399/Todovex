@@ -86,3 +86,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.container-2 {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  box-sizing: border-box;
+}

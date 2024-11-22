@@ -20,8 +20,8 @@ export const Navbar = () => {
       transition={{ duration: 0.5 }}
       className="bg-white/70 dark:bg-[#1e2124]/70 shadow-lg sticky top-0 z-50 backdrop-blur-md border-b border-gray-200 dark:border-gray-800"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="container px-4 mx-auto max-w-7xl">
+        <div className= "flex justify-between items-center h-20">
           <motion.div
             className="flex items-center group cursor-pointer"
             whileHover={{ scale: 1.05 }}
@@ -112,8 +112,8 @@ export const Navbar = () => {
             >
               <Button
                 className="
-                  bg-gradient-to-r from-[#7289da] to-[#424549] 
-                  hover:from-[#424549] hover:to-[#7289da]
+                  bg-gradient-to-r from-[#7289da] to-[#7159da] 
+                  hover:from-[#7159da] hover:to-[#7289da]
                   text-white px-6 py-2 rounded-lg 
                   transition-all duration-300
                   shadow-lg shadow-[#7289da]/20 
