@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ConvexClientProvider } from "./ConvexClientProvider";
-import { ThemeProvider } from '@/components/layout/ThemeProvider'
-
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,9 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-         <ConvexClientProvider>
-         <ThemeProvider>{children}</ThemeProvider>
-         </ConvexClientProvider>
+        <ThemeProvider>
+          {children} <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

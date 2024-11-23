@@ -1,12 +1,9 @@
 import React from "react";
-
-import { Header } from "./home/Header";
-import { Features } from "./home/Features";
-
+import UserProfile from "@/components/User/userProfile";
 const page = () => {
   return (
     <div>
-      <Header />
+      <UserProfile />
     </div>
   );
 };

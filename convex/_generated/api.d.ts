@@ -13,6 +13,8 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as authAdapter from "../authAdapter.js";
+import type * as http from "../http.js";
 import type * as task from "../task.js";
 
 /**
@@ -24,6 +26,8 @@ import type * as task from "../task.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  authAdapter: typeof authAdapter;
+  http: typeof http;
   task: typeof task;
 }>;
 export declare const api: FilterApi<

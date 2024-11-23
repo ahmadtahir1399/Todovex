@@ -1,23 +1,26 @@
-'use client';
-import React from 'react';
+import React from "react";
 
-import Footer from '@/components/common/Footer';
-import Navbar from '@/components/common/Navbar';
+import Footer from "@/components/common/Footer";
+import Navbar from "@/components/common/Navbar";
+import { Providers } from "../Providers";
+import { auth } from "@/auth";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
-    <div className="flex w-full ">
+    <Providers session={session}>
       <div className="w-full">
         <Navbar />
-          {children}
-          <div className="">
-            <Footer />
-          </div>
+        {children}
+        <div className="">
+          <Footer />
+        </div>
       </div>
-    </div>
+    </Providers>
   );
 }
