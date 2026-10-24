@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:050505,55:1c1d20,100:0c63e7&height=170&section=header&text=Todovex&fontSize=52&fontColor=fcfaf8&fontAlignY=38&desc=AI-powered%20task%20manager&descAlignY=60&descSize=16" width="100%" alt="Todovex" />
+</p>
 
-## Getting Started
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Convex-0a85ed?style=for-the-badge" alt="Convex" />
+  <img src="https://img.shields.io/badge/NextAuth-1c1d20?style=for-the-badge" alt="NextAuth" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+</p>
 
-First, run the development server:
+> 🚧 **Work in progress.** The landing page, Google sign-in and the database schema are done. Task management and the AI features are being built on top of them.
+
+## ✨ About
+
+Todovex is a task manager built with **Next.js 15** and a **Convex** real-time backend. Users sign in with Google through **NextAuth (Auth.js)**. A custom Convex adapter stores users and sessions, and each session gets a signed JWT so Convex can authenticate requests.
+
+The schema is ready for the next stage: todos and sub-todos linked to projects and labels, priorities and due dates, plus a **vector index on 1536-dim embeddings** for AI-powered semantic search.
+
+## 🔋 Features
+
+- ✅ Animated landing page (Framer Motion) with light and dark mode
+- ✅ Google OAuth sign-in with NextAuth and a custom **Convex adapter**
+- ✅ RS256-signed JWTs bridging NextAuth sessions to Convex auth
+- ✅ Protected dashboard using Next.js middleware
+- ✅ Convex schema for todos, sub-todos, projects and labels with vector search
+- 🔜 Task CRUD, projects and labels UI
+- 🔜 AI prioritization and natural-language task input
+
+## 🛠️ Tech stack
+
+| Layer | Tools |
+|---|---|
+| Framework | Next.js 15 (App Router), React, TypeScript |
+| Backend / DB | Convex (real-time database, vector index) |
+| Auth | NextAuth v5 (Google provider), `jose` for JWT signing |
+| UI | Tailwind CSS, shadcn/ui (Radix), Framer Motion, Lucide icons |
+| Forms | React Hook Form + Zod |
+
+## 🚀 Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ahmadtahir1399/Todovex.git
+cd Todovex
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Generate the key pair that signs Convex tokens:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+node generateKeys.mjs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create `.env.local`:
 
-## Learn More
+```env
+NEXT_PUBLIC_CONVEX_URL=        # from `npx convex dev`
+CONVEX_AUTH_PRIVATE_KEY=       # from generateKeys.mjs
+JWKS=                          # from generateKeys.mjs
+CONVEX_AUTH_ADAPTER_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+AUTH_SECRET=                   # npx auth secret
+```
 
-To learn more about Next.js, take a look at the following resources:
+Set `CONVEX_SITE_URL`, `JWKS` and `CONVEX_AUTH_ADAPTER_SECRET` in the Convex dashboard too, then run both servers:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx convex dev
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+## 📁 Project structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+app/
+  (customer)/      landing page (header, features)
+  dashboard/       protected user area
+  api/auth/        NextAuth route handlers
+  ConvexAdapter.ts NextAuth ↔ Convex adapter
+convex/
+  schema.ts        auth tables + todos, subTodos, projects, labels
+  authAdapter.ts   Convex functions used by the adapter
+auth.ts            NextAuth config + Convex JWT signing
+middleware.ts      route protection
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👤 Author
+
+**Muhammad Ahmad Tahir** · [Portfolio](https://ahmadverse.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/ahmad-ai-enginner/) · [GitHub](https://github.com/ahmadtahir1399)
